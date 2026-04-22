@@ -12,6 +12,8 @@ public class MahasiswaDemo10 {
             System.out.println("2. Menilai Tugas");
             System.out.println("3. Melihat Tugas Teratas");
             System.out.println("4. Melihat Daftar Tugas");
+            System.out.println("5. Lihat Tugas Terbawah");
+            System.out.println("6. Hitung Tugas Terkumpul");
             System.out.print("Pilih: ");
             pilih = scan.nextInt();
             scan.nextLine();
@@ -38,6 +40,8 @@ public class MahasiswaDemo10 {
                         scan.nextLine();
                         dinilai.tugasDinilai(nilai);
                         System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+                        String biner = stack.konversiDesimalKeBiner(nilai);
+                        System.out.println("Nilai Biner Tugas: " + biner);
                     }
                     break;
 
@@ -54,11 +58,21 @@ public class MahasiswaDemo10 {
                     stack.print();
                     break;
 
+                case 5:
+                    Mahasiswa10 terbawah = stack.peekBottom();
+                    if (terbawah != null) {
+                        System.out.println("Mahasiswa pertama mengumpulkan tugas: " + terbawah.nama
+                                + " (NIM: " + terbawah.nim + ", Kelas: " + terbawah.kelas + ")");
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Jumlah tugas yang sudah dikumpulkan: " + stack.hitungTugas());
+                    break;
+
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
         } while (pilih >= 1 && pilih <= 6);
-
-        scan.close();
     }
 }

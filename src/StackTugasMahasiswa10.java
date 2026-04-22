@@ -5,8 +5,8 @@ public class StackTugasMahasiswa10 {
 
     public StackTugasMahasiswa10(int size) {
         this.size = size;
-        this.stack = new Mahasiswa10[size];
-        this.top = -1;
+        stack = new Mahasiswa10[size];
+        top = -1;
     }
 
     public boolean isFull() {
@@ -30,17 +30,17 @@ public class StackTugasMahasiswa10 {
             top++;
             stack[top] = mhs;
         } else {
-            System.out.println("Stack sudah penuh!");
+            System.out.println("Stack penuh! Tidak bisa menambahkan tugas lagi.");
         }
     }
 
     public Mahasiswa10 pop() {
         if (!isEmpty()) {
-            Mahasiswa10 mhs = stack[top];
+            Mahasiswa10 m = stack[top];
             top--;
-            return mhs;
+            return m;
         } else {
-            System.out.println("Stack kosong!");
+            System.out.println("Stack kosong! Tidak ada tugas untuk dinilai.");
             return null;
         }
     }
@@ -49,9 +49,22 @@ public class StackTugasMahasiswa10 {
         if (!isEmpty()) {
             return stack[top];
         } else {
-            System.out.println("Stack kosong!");
+            System.out.println("Stack kosong! Tidak ada tugas yang dikumpulkan");
             return null;
         }
+    }
+
+    public Mahasiswa10 peekBottom() {
+        if (!isEmpty()) {
+            return stack[0];
+        } else {
+            System.out.println("Stack kosong! Tidak ada tugas yang dikumpulkan");
+            return null;
+        }
+    }
+
+    public int hitungTugas() {
+        return top + 1;
     }
 
     public void print() {
@@ -59,5 +72,19 @@ public class StackTugasMahasiswa10 {
             System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas);
         }
         System.out.println("");
+    }
+
+    public String konversiDesimalKeBiner(int nilai) {
+        StackKonversi10 stackBiner = new StackKonversi10();
+        while (nilai > 0) {
+            int sisa = nilai % 2;
+            stackBiner.push(sisa);
+            nilai = nilai / 2;
+        }
+        String biner = new String();
+        while (!stackBiner.isEmpty()) {
+            biner += stackBiner.pop();
+        }
+        return biner;
     }
 }
